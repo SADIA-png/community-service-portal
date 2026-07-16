@@ -56,10 +56,50 @@
                                 <input type="email" id="email" required placeholder="username@iitr.ac.in" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
                             </div>
                         </div>
+                        
+                        <!-- NEW: IIT Roorkee Dropdown List -->
                         <div id="deptField">
                             <label class="block text-sm font-medium text-slate-950 mb-1">Department / Centre / School *</label>
-                            <input type="text" id="department" placeholder="e.g., Department of Water Resources" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                            <select id="department" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                                <option value="" disabled selected>Select your affiliation...</option>
+                                <optgroup label="Departments">
+                                    <option value="Architecture & Planning">Architecture & Planning</option>
+                                    <option value="Applied Mathematics and Scientific Computing">Applied Mathematics and Scientific Computing</option>
+                                    <option value="Biosciences and Bioengineering">Biosciences and Bioengineering</option>
+                                    <option value="Chemical Engineering">Chemical Engineering</option>
+                                    <option value="Chemistry">Chemistry</option>
+                                    <option value="Civil Engineering">Civil Engineering</option>
+                                    <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                                    <option value="Design">Design</option>
+                                    <option value="Earth Sciences">Earth Sciences</option>
+                                    <option value="Earthquake Engineering">Earthquake Engineering</option>
+                                    <option value="Electrical Engineering">Electrical Engineering</option>
+                                    <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
+                                    <option value="Humanities and Social Sciences">Humanities and Social Sciences</option>
+                                    <option value="Hydro and Renewable Energy">Hydro and Renewable Energy</option>
+                                    <option value="Hydrology">Hydrology</option>
+                                    <option value="Management Studies">Management Studies</option>
+                                    <option value="Mathematics">Mathematics</option>
+                                    <option value="Mechanical and Industrial Engineering">Mechanical and Industrial Engineering</option>
+                                    <option value="Metallurgical and Materials Engineering">Metallurgical and Materials Engineering</option>
+                                    <option value="Paper Technology">Paper Technology</option>
+                                    <option value="Physics">Physics</option>
+                                    <option value="Polymer and Process Engineering">Polymer and Process Engineering</option>
+                                    <option value="Water Resources Development and Management">Water Resources Development & Management</option>
+                                </optgroup>
+                                <optgroup label="Schools">
+                                    <option value="Mehta Family School of Data Science and Artificial Intelligence">Mehta Family School of Data Science & AI</option>
+                                </optgroup>
+                                <optgroup label="Centres">
+                                    <option value="Centre of Excellence in Disaster Mitigation & Management">Centre of Excellence in Disaster Mitigation & Management (CoEDMM)</option>
+                                    <option value="Centre of Nanotechnology">Centre of Nanotechnology</option>
+                                    <option value="Centre for Transportation Systems (CTRANS)">Centre for Transportation Systems (CTRANS)</option>
+                                    <option value="Centre for Space Science & Technology">Centre for Space Science & Technology</option>
+                                    <option value="Centre for Photonics and Quantum Communication Technologies">Centre for Photonics and Quantum Communication Technologies</option>
+                                </optgroup>
+                            </select>
                         </div>
+                        
                         <div id="orgField" class="hidden">
                             <label class="block text-sm font-medium text-slate-950 mb-1">Organization / Registration Name *</label>
                             <input type="text" id="organizationName" placeholder="e.g., Himalayan NGO" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
@@ -167,7 +207,7 @@
                 fullName: document.getElementById('fullName').value.trim(),
                 email: document.getElementById('email').value.trim(),
                 affiliation: document.getElementById('userType').value === 'Faculty' ? 
-                             document.getElementById('department').value.trim() : 
+                             document.getElementById('department').value : // No .trim() needed for select
                              document.getElementById('organizationName').value.trim(),
                 title: document.getElementById('title').value.trim(),
                 themes: selectedThemes,
