@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORE Project Proposal Intake</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans min-h-screen py-10 px-4 md:px-6">
+
+    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-3xl mx-auto">
+        <div class="border-b pb-4 mb-6">
+            <h1 class="text-2xl font-bold text-gray-900">Project Proposal Form: Community Outreach (CORE)</h1>
+            <p class="text-sm text-gray-600 mt-2">As per Senate Item No. 105.9, the CORE course (XXC-399) is a field-work based 2-credit course emphasizing community immersion.</p>
+        </div>
+
+        <form id="projectForm" class="space-y-8">
+            
+            <!-- SECTION 1: PROFILING -->
+            <div class="space-y-4">
+                <h2 class="text-lg font-semibold text-indigo-700 border-b pb-1">Section 1: Submitter Profile</h2>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">I am submitting as a: *</label>
+                    <select id="userType" required class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 bg-white" onchange="toggleProfileFields()">
+                        <option value="Faculty">IIT Roorkee Faculty Member</option>
+                        <option value="NGO">Registered NGO Partner</option>
+                        <option value="SHG">Self-Help Group (SHG) / Local Body</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                        <input type="text" id="fullName" required placeholder="Dr. / Mr. / Ms. Name" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                        <input type="email" id="email" required placeholder="username@iitr.ac.in or official email" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+
+                <!-- Dynamic Field: Faculty Dept vs Organization Name -->
+                <div id="deptField">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Department / Centre / School *</label>
+                    <input type="text" id="department" placeholder="e.g., Department of Water Resources Development & Management" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
+                </div>
+                
+                <div id="orgField" class="hidden">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Organization / SHG Registration Name *</label>
+                    <input type="text" id="organizationName" placeholder="e.g., Himalayan Environmental Conservation Society" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
+                </div>
+            </div>
+
+            <!-- SECTION 2: IDEA & SCOPE -->
+            <div class="space-y-4">
+                <h2 class="text-lg font-semibold text-indigo-700 border-b pb-1">Section 2: Project Idea & Scope</h2>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Project Title / Working Name *</label>
+                    <input type="text" id="title" required placeholder="Brief descriptive title" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1 text-gray-800">Primary Thematic Area of the Project (Select all relevant) *</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2 bg-gray-50 p-4 rounded-md border text-sm">
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="themes" value="Environmental Sustainability" class="rounded text-indigo-600"> <span>Environmental Sustainability & Cleanliness</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="themes" value="Waste Management" class="rounded text-indigo-600"> <span>Waste Management & Recycling Systems</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="themes" value="Water Quality & Sanitation" class="rounded text-indigo-600"> <span>Water Quality, Harvesting & Sanitation</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="themes" value="Digital Tools & Automation" class="rounded text-indigo-600"> <span>Digital Tools & Process Automation</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="themes" value="Cultural Heritage & Tourism" class="rounded text-indigo-600"> <span>Himalayan Cultural Heritage & Eco-Tourism</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="themes" value="Community Socio-Economic Growth" class="rounded text-indigo-600"> <span>Socio-Economic Empowerment of Communities</span></label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Core Societal Problem to be Addressed *</label>
+                    <textarea id="coreProblem" required rows="3" placeholder="Briefly describe the domain-specific problem or community challenge the students will work on..." class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Proposed Field Component (What students will do) *</label>
+                    <textarea id="fieldComponent" required rows="3" placeholder="Describe execution tasks (e.g., conducting structural track assessments, testing water quality parameters, organizing specialized bootcamps)..." class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500"></textarea>
+                </div>
+            </div>
+
+            <!-- SECTION 3: LOCATION & COLLABORATION -->
+            <div class="space-y-4">
+                <h2 class="text-lg font-semibold text-indigo-700 border-b pb-1">Section 3: Location & Collaboration</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Target Community / Field Work Location *</label>
+                        <input type="text" id="location" required placeholder="Specify target village or geographic area" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Within 100 km radius of Roorkee? *</label>
+                        <select id="radiusCheck" required class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 bg-white">
+                            <option value="Yes">Yes (Complies with standard institute field guidelines)</option>
+                            <option value="No">No (Requires explicit administrative variance approval)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Proposed External Collaborator (If any)</label>
+                    <input type="text" id="collaborator" placeholder="List any NGO, local body, or enterprise partner (or state 'None')" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-md hover:bg-indigo-700 transition duration-200 shadow-md text-base">Submit CORE Proposal</button>
+        </form>
+
+        <div id="statusMessage" class="mt-4 p-4 rounded-md text-center hidden"></div>
+    </div>
+
+    <script>
+        function toggleProfileFields() {
+            const type = document.getElementById('userType').value;
+            const deptField = document.getElementById('deptField');
+            const orgField = document.getElementById('orgField');
+            
+            if(type === 'Faculty') {
+                deptField.classList.remove('hidden');
+                orgField.classList.add('hidden');
+                document.getElementById('department').setAttribute('required', 'true');
+                document.getElementById('organizationName').removeAttribute('required');
+            } else {
+                deptField.classList.add('hidden');
+                orgField.classList.remove('hidden');
+                document.getElementById('organizationName').setAttribute('required', 'true');
+                document.getElementById('department').removeAttribute('required');
+            }
+        }
+
+        document.getElementById('projectForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const status = document.getElementById('statusMessage');
+            status.className = "mt-4 p-4 rounded-md text-center block bg-indigo-50 text-indigo-700 animate-pulse";
+            status.innerText = "Transmitting submission safely to cloud router...";
+
+            const selectedThemes = [];
+            document.querySelectorAll('input[name="themes"]:checked').forEach(cb => selectedThemes.push(cb.value));
+
+            if(selectedThemes.length === 0) {
+                status.className = "mt-4 p-4 rounded-md text-center block bg-red-100 text-red-700";
+                status.innerText = "Error: Please select at least one relevant Thematic Area.";
+                return;
+            }
+
+            const payload = {
+                userType: document.getElementById('userType').value,
+                fullName: document.getElementById('fullName').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                affiliation: document.getElementById('userType').value === 'Faculty' ? 
+                             document.getElementById('department').value.trim() : 
+                             document.getElementById('organizationName').value.trim(),
+                title: document.getElementById('title').value.trim(),
+                themes: selectedThemes,
+                coreProblem: document.getElementById('coreProblem').value.trim(),
+                fieldComponent: document.getElementById('fieldComponent').value.trim(),
+                location: document.getElementById('location').value.trim(),
+                withinRadius: document.getElementById('radiusCheck').value === 'Yes',
+                collaborator: document.getElementById('collaborator').value.trim() || 'None'
+            };
+
+            try {
+                const response = await fetch('/api/submit-project', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await response.json();
+                
+                if(response.ok) {
+                    status.className = "mt-4 p-4 rounded-md text-center block bg-green-100 text-green-700 font-medium border border-green-300";
+                    status.innerHTML = `Proposal cataloged successfully under Senate Item No. 105.9!<br><span class="text-sm font-bold text-green-800">Generated Project Reference: ${data.projectId}</span>`;
+                    document.getElementById('projectForm').reset();
+                    toggleProfileFields();
+                } else {
+                    status.className = "mt-4 p-4 rounded-md text-center block bg-red-100 text-red-700";
+                    status.innerText = "Error handling request: " + data.message;
+                }
+            } catch (err) {
+                status.className = "mt-4 p-4 rounded-md text-center block bg-red-100 text-red-700";
+                status.innerText = "Network pipeline error. Connection timed out.";
+            }
+        });
+        // Run once to initialize structural attributes
+        toggleProfileFields();
+    </script>
+</body>
+</html>
