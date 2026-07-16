@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Final Report | CORE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans min-h-screen flex items-center justify-center p-6">
+    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-lg">
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">Upload Field Report</h1>
+        <p class="text-sm text-gray-600 mb-6">Submit your final PDF report or geotagged data zip. Max file size: 4MB.</p>
+
+        <form id="uploadForm" class="space-y-5">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Team ID *</label>
+                <input type="text" id="teamId" required placeholder="e.g., TEAM-1234" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Select File *</label>
+                <input type="file" id="reportFile" required accept=".pdf,image/*,.zip" class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-md hover:bg-blue-700 transition duration-200 shadow-md">Upload to Cloud Storage</button>
+        </form>
+
+        <div id="statusMessage" class="mt-4 p-4 rounded-md text-center hidden"></div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const status = document.getElementById('statusMessage');
+            const fileInput = document.getElementById('reportFile');
+            const teamId = document.getElementById('teamId').value.trim();
+
+            if (fileInput.files.length === 0) return;
+            
+            const file = fileInput.files[0];
+            
+            // Vercel serverless limit safety check (4MB)
+            if (file.size > 4 * 1024 * 1024) {
+                status.className = "mt-4 p-4 rounded-md text-center block bg-red-100 text-red-700";
+                status.innerText = "File is too large. Please keep it under 4MB.";
+                return;
+            }
+
+            status.className = "mt-4 p-4 rounded-md text-center block bg-blue-50 text-blue-700 animate-pulse";
+            status.innerText = "Encoding and transmitting file...";
+
+            const reader = new FileReader();
+            reader.onload = async function(event) {
+                const base64Data = event.target.result;
+                
+                try {
+                    const response = await fetch('/api/submit-report', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            teamId: teamId,
+                            fileName: file.name,
+                            contentType: file.type,
+                            fileData: base64Data
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if(response.ok) {
+                        status.className = "mt-4 p-4 rounded-md text-center block bg-green-100 text-green-700 border border-green-300";
+                        status.innerHTML = `Success! Report linked to ${teamId}.<br><br><a href="${data.url}" target="_blank" class="underline font-bold text-green-800">View Uploaded File</a>`;
+                        document.getElementById('uploadForm').reset();
+                    } else {
+                        status.className = "mt-4 p-4 rounded-md text-center block bg-red-100 text-red-700";
+                        status.innerText = "Error: " + data.message;
+                    }
+                } catch (err) {
+                    status.className = "mt-4 p-4 rounded-md text-center block bg-red-100 text-red-700";
+                    status.innerText = "Transmission failed. Check your connection.";
+                }
+            };
+            
+            // Read the file as a Base64 string
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>
