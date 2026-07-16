@@ -3,131 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORE Project Proposal Intake</title>
+    <title>CORE Project Proposal | CORE Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body class="bg-gray-50 font-sans min-h-screen py-10 px-4 md:px-6">
+<body class="bg-gray-50/50 text-slate-950 min-h-screen flex flex-col antialiased">
 
-    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-3xl mx-auto">
-        <div class="border-b pb-4 mb-6">
-            <h1 class="text-2xl font-bold text-gray-900">Project Proposal Form: Community Outreach (CORE)</h1>
-            <p class="text-sm text-gray-600 mt-2">As per Senate Item No. 105.9, the CORE course (XXC-399) is a field-work based 2-credit course emphasizing community immersion.</p>
+    <header class="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+        <div class="container mx-auto max-w-6xl flex h-14 items-center justify-between px-4 sm:px-6">
+            <div class="flex items-center gap-2 font-semibold tracking-tight">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                CORE Portal
+            </div>
+            <nav class="flex items-center gap-6 text-sm font-medium text-slate-600">
+                <a href="/" class="transition-colors hover:text-slate-950">Overview</a>
+                <a href="/register-team.html" class="transition-colors hover:text-slate-950">Students</a>
+                <a href="/project-intake.html" class="text-slate-950 transition-colors hover:text-slate-950">Proposals</a>
+                <a href="/admin-dashboard.html" class="transition-colors hover:text-slate-950">Admin</a>
+            </nav>
         </div>
+    </header>
 
-        <form id="projectForm" class="space-y-8">
-            
-            <!-- SECTION 1: PROFILING -->
-            <div class="space-y-4">
-                <h2 class="text-lg font-semibold text-indigo-700 border-b pb-1">Section 1: Submitter Profile</h2>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">I am submitting as a: *</label>
-                    <select id="userType" required class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 bg-white" onchange="toggleProfileFields()">
-                        <option value="Faculty">IIT Roorkee Faculty Member</option>
-                        <option value="NGO">Registered NGO Partner</option>
-                        <option value="SHG">Self-Help Group (SHG) / Local Body</option>
-                    </select>
+    <main class="flex-grow flex items-center justify-center p-6 md:p-10">
+        <div class="rounded-xl border border-gray-200 bg-white text-slate-950 shadow-sm w-full max-w-3xl">
+            <div class="p-6 md:p-8">
+                <div class="space-y-1 mb-8 border-b border-gray-100 pb-4">
+                    <h2 class="text-2xl font-semibold tracking-tight">Project Proposal (CORE)</h2>
+                    <p class="text-sm text-slate-500">As per Senate Item No. 105.9, submit your XXC-399 field-work proposals below.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-                        <input type="text" id="fullName" required placeholder="Dr. / Mr. / Ms. Name" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
+                <form id="projectForm" class="space-y-8">
+                    <div class="space-y-4">
+                        <h3 class="text-sm font-semibold text-slate-900 border-b border-gray-100 pb-2">1. Submitter Profile</h3>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-950 mb-1">I am submitting as a: *</label>
+                            <select id="userType" required class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2" onchange="toggleProfileFields()">
+                                <option value="Faculty">IIT Roorkee Faculty Member</option>
+                                <option value="NGO">Registered NGO Partner</option>
+                                <option value="SHG">Self-Help Group (SHG) / Local Body</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-950 mb-1">Full Name *</label>
+                                <input type="text" id="fullName" required placeholder="Dr. / Mr. / Ms. Name" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-950 mb-1">Email Address *</label>
+                                <input type="email" id="email" required placeholder="username@iitr.ac.in" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                            </div>
+                        </div>
+                        <div id="deptField">
+                            <label class="block text-sm font-medium text-slate-950 mb-1">Department / Centre / School *</label>
+                            <input type="text" id="department" placeholder="e.g., Department of Water Resources" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                        </div>
+                        <div id="orgField" class="hidden">
+                            <label class="block text-sm font-medium text-slate-950 mb-1">Organization / Registration Name *</label>
+                            <input type="text" id="organizationName" placeholder="e.g., Himalayan NGO" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
-                        <input type="email" id="email" required placeholder="username@iitr.ac.in or official email" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
-                    </div>
-                </div>
 
-                <!-- Dynamic Field: Faculty Dept vs Organization Name -->
-                <div id="deptField">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Department / Centre / School *</label>
-                    <input type="text" id="department" placeholder="e.g., Department of Water Resources Development & Management" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
-                </div>
-                
-                <div id="orgField" class="hidden">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Organization / SHG Registration Name *</label>
-                    <input type="text" id="organizationName" placeholder="e.g., Himalayan Environmental Conservation Society" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
-                </div>
+                    <div class="space-y-4">
+                        <h3 class="text-sm font-semibold text-slate-900 border-b border-gray-100 pb-2">2. Project Idea & Scope</h3>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-950 mb-1">Project Title / Working Name *</label>
+                            <input type="text" id="title" required placeholder="Brief descriptive title" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-950 mb-2">Primary Thematic Area (Select all relevant) *</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 p-4 rounded-md border border-gray-200 bg-slate-50/50 text-sm">
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="themes" value="Environmental Sustainability" class="rounded border-gray-300 text-slate-900 focus:ring-slate-950"> <span class="font-medium text-slate-700">Environmental Sustainability</span></label>
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="themes" value="Waste Management" class="rounded border-gray-300 text-slate-900 focus:ring-slate-950"> <span class="font-medium text-slate-700">Waste Management</span></label>
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="themes" value="Water Quality & Sanitation" class="rounded border-gray-300 text-slate-900 focus:ring-slate-950"> <span class="font-medium text-slate-700">Water Quality & Sanitation</span></label>
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="themes" value="Digital Tools & Automation" class="rounded border-gray-300 text-slate-900 focus:ring-slate-950"> <span class="font-medium text-slate-700">Digital Tools & Automation</span></label>
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="themes" value="Cultural Heritage & Tourism" class="rounded border-gray-300 text-slate-900 focus:ring-slate-950"> <span class="font-medium text-slate-700">Cultural Heritage & Tourism</span></label>
+                                <label class="flex items-center space-x-2 cursor-pointer"><input type="checkbox" name="themes" value="Community Socio-Economic Growth" class="rounded border-gray-300 text-slate-900 focus:ring-slate-950"> <span class="font-medium text-slate-700">Socio-Economic Empowerment</span></label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-950 mb-1">Core Societal Problem *</label>
+                            <textarea id="coreProblem" required rows="3" placeholder="Briefly describe the domain-specific problem..." class="flex min-h-[80px] w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-950 mb-1">Proposed Field Component *</label>
+                            <textarea id="fieldComponent" required rows="3" placeholder="What will students do on-site..." class="flex min-h-[80px] w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="text-sm font-semibold text-slate-900 border-b border-gray-100 pb-2">3. Location & Collaboration</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-950 mb-1">Target Community / Location *</label>
+                                <input type="text" id="location" required placeholder="Target village or area" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-950 mb-1">Within 100 km radius of Roorkee? *</label>
+                                <select id="radiusCheck" required class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                                    <option value="Yes">Yes (Complies with guidelines)</option>
+                                    <option value="No">No (Requires variance approval)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-950 mb-1">Proposed External Collaborator</label>
+                            <input type="text" id="collaborator" placeholder="NGO, local body, or 'None'" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-slate-900 text-slate-50 hover:bg-slate-900/90 h-10 px-4 py-2 w-full transition-colors focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                        Submit CORE Proposal
+                    </button>
+                </form>
+
+                <div id="statusMessage" class="mt-4 p-4 rounded-md text-center text-sm font-medium hidden"></div>
             </div>
+        </div>
+    </main>
 
-            <!-- SECTION 2: IDEA & SCOPE -->
-            <div class="space-y-4">
-                <h2 class="text-lg font-semibold text-indigo-700 border-b pb-1">Section 2: Project Idea & Scope</h2>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Project Title / Working Name *</label>
-                    <input type="text" id="title" required placeholder="Brief descriptive title" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1 text-gray-800">Primary Thematic Area of the Project (Select all relevant) *</label>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2 bg-gray-50 p-4 rounded-md border text-sm">
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="themes" value="Environmental Sustainability" class="rounded text-indigo-600"> <span>Environmental Sustainability & Cleanliness</span></label>
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="themes" value="Waste Management" class="rounded text-indigo-600"> <span>Waste Management & Recycling Systems</span></label>
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="themes" value="Water Quality & Sanitation" class="rounded text-indigo-600"> <span>Water Quality, Harvesting & Sanitation</span></label>
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="themes" value="Digital Tools & Automation" class="rounded text-indigo-600"> <span>Digital Tools & Process Automation</span></label>
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="themes" value="Cultural Heritage & Tourism" class="rounded text-indigo-600"> <span>Himalayan Cultural Heritage & Eco-Tourism</span></label>
-                        <label class="flex items-center space-x-2"><input type="checkbox" name="themes" value="Community Socio-Economic Growth" class="rounded text-indigo-600"> <span>Socio-Economic Empowerment of Communities</span></label>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Core Societal Problem to be Addressed *</label>
-                    <textarea id="coreProblem" required rows="3" placeholder="Briefly describe the domain-specific problem or community challenge the students will work on..." class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500"></textarea>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Proposed Field Component (What students will do) *</label>
-                    <textarea id="fieldComponent" required rows="3" placeholder="Describe execution tasks (e.g., conducting structural track assessments, testing water quality parameters, organizing specialized bootcamps)..." class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500"></textarea>
-                </div>
-            </div>
-
-            <!-- SECTION 3: LOCATION & COLLABORATION -->
-            <div class="space-y-4">
-                <h2 class="text-lg font-semibold text-indigo-700 border-b pb-1">Section 3: Location & Collaboration</h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Target Community / Field Work Location *</label>
-                        <input type="text" id="location" required placeholder="Specify target village or geographic area" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Within 100 km radius of Roorkee? *</label>
-                        <select id="radiusCheck" required class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 bg-white">
-                            <option value="Yes">Yes (Complies with standard institute field guidelines)</option>
-                            <option value="No">No (Requires explicit administrative variance approval)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Proposed External Collaborator (If any)</label>
-                    <input type="text" id="collaborator" placeholder="List any NGO, local body, or enterprise partner (or state 'None')" class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500">
-                </div>
-            </div>
-
-            <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-md hover:bg-indigo-700 transition duration-200 shadow-md text-base">Submit CORE Proposal</button>
-        </form>
-
-        <div id="statusMessage" class="mt-4 p-4 rounded-md text-center hidden"></div>
-    </div>
+    <footer class="border-t border-gray-200 bg-white/50 py-6 mt-auto">
+        <div class="container mx-auto max-w-6xl px-4 text-center text-sm text-slate-500">
+            <p>An initiative by Academic Outreach and Community Connect</p>
+            <p class="mt-1">&copy; 2026 by IIT Roorkee</p>
+        </div>
+    </footer>
 
     <script>
         function toggleProfileFields() {
             const type = document.getElementById('userType').value;
-            const deptField = document.getElementById('deptField');
-            const orgField = document.getElementById('orgField');
-            
             if(type === 'Faculty') {
-                deptField.classList.remove('hidden');
-                orgField.classList.add('hidden');
+                document.getElementById('deptField').classList.remove('hidden');
+                document.getElementById('orgField').classList.add('hidden');
                 document.getElementById('department').setAttribute('required', 'true');
                 document.getElementById('organizationName').removeAttribute('required');
             } else {
-                deptField.classList.add('hidden');
-                orgField.classList.remove('hidden');
+                document.getElementById('deptField').classList.add('hidden');
+                document.getElementById('orgField').classList.remove('hidden');
                 document.getElementById('organizationName').setAttribute('required', 'true');
                 document.getElementById('department').removeAttribute('required');
             }
@@ -136,15 +150,15 @@
         document.getElementById('projectForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const status = document.getElementById('statusMessage');
-            status.className = "mt-4 p-4 rounded-md text-center block bg-indigo-50 text-indigo-700 animate-pulse";
-            status.innerText = "Transmitting submission safely to cloud router...";
+            status.className = "mt-4 p-4 rounded-md text-center text-sm font-medium block bg-slate-100 text-slate-700 animate-pulse";
+            status.innerText = "Transmitting submission to cloud router...";
 
             const selectedThemes = [];
             document.querySelectorAll('input[name="themes"]:checked').forEach(cb => selectedThemes.push(cb.value));
 
             if(selectedThemes.length === 0) {
-                status.className = "mt-4 p-4 rounded-md text-center block bg-red-100 text-red-700";
-                status.innerText = "Error: Please select at least one relevant Thematic Area.";
+                status.className = "mt-4 p-4 rounded-md text-center text-sm font-medium block border border-red-200 bg-red-50 text-red-900";
+                status.innerText = "Error: Please select at least one Thematic Area.";
                 return;
             }
 
@@ -170,24 +184,22 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-                
                 const data = await response.json();
                 
                 if(response.ok) {
-                    status.className = "mt-4 p-4 rounded-md text-center block bg-green-100 text-green-700 font-medium border border-green-300";
-                    status.innerHTML = `Proposal cataloged successfully under Senate Item No. 105.9!<br><span class="text-sm font-bold text-green-800">Generated Project Reference: ${data.projectId}</span>`;
+                    status.className = "mt-4 p-4 rounded-md text-center text-sm font-medium block border border-green-200 bg-green-50 text-green-900";
+                    status.innerHTML = `Proposal cataloged! Reference ID: <strong>${data.projectId}</strong>`;
                     document.getElementById('projectForm').reset();
                     toggleProfileFields();
                 } else {
-                    status.className = "mt-4 p-4 rounded-md text-center block bg-red-100 text-red-700";
-                    status.innerText = "Error handling request: " + data.message;
+                    status.className = "mt-4 p-4 rounded-md text-center text-sm font-medium block border border-red-200 bg-red-50 text-red-900";
+                    status.innerText = "Error: " + data.message;
                 }
             } catch (err) {
-                status.className = "mt-4 p-4 rounded-md text-center block bg-red-100 text-red-700";
-                status.innerText = "Network pipeline error. Connection timed out.";
+                status.className = "mt-4 p-4 rounded-md text-center text-sm font-medium block border border-red-200 bg-red-50 text-red-900";
+                status.innerText = "Network pipeline error.";
             }
         });
-        // Run once to initialize structural attributes
         toggleProfileFields();
     </script>
 </body>

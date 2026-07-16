@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORE Portal | shadcn style</title>
+    <title>CORE Portal | Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Replicating shadcn's default Inter font feel */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
 <body class="bg-gray-50/50 text-slate-950 min-h-screen flex flex-col antialiased">
 
-    <!-- shadcn-style Minimalist Navbar -->
     <header class="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
         <div class="container mx-auto max-w-6xl flex h-14 items-center justify-between px-4 sm:px-6">
             <div class="flex items-center gap-2 font-semibold tracking-tight">
-                <!-- Lucide Icon (shadcn default) -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 CORE Portal
             </div>
@@ -30,18 +27,14 @@
         </div>
     </header>
 
-    <!-- Main Content Area -->
     <main class="flex-grow flex items-center justify-center p-6 md:p-10">
         <div class="max-w-5xl w-full space-y-8">
-            
             <div class="space-y-2">
                 <h1 class="text-3xl font-bold tracking-tight text-slate-950">Dashboard</h1>
                 <p class="text-slate-500">Manage field-work components, teams, and deliverables for XXC-399.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                
-                <!-- shadcn Card 1 -->
                 <div class="rounded-xl border border-gray-200 bg-white text-slate-950 shadow-sm flex flex-col">
                     <div class="p-6 flex flex-col gap-1.5 flex-grow">
                         <div class="flex items-center justify-between mb-2">
@@ -50,14 +43,13 @@
                         </div>
                         <p class="text-sm text-slate-500 mb-4">Form 4-member groups and register project preferences for the term.</p>
                         <div class="mt-auto">
-                            <a href="/register-team.html" class="inline-flex items-center justify-center w-full rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-slate-900/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-slate-900 text-white h-10 px-4 py-2">
+                            <a href="/register-team.html" class="inline-flex items-center justify-center w-full rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 bg-slate-900 text-white hover:bg-slate-900/90 h-10 px-4 py-2">
                                 Register Team
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- shadcn Card 2 -->
                 <div class="rounded-xl border border-gray-200 bg-white text-slate-950 shadow-sm flex flex-col">
                     <div class="p-6 flex flex-col gap-1.5 flex-grow">
                         <div class="flex items-center justify-between mb-2">
@@ -66,14 +58,13 @@
                         </div>
                         <p class="text-sm text-slate-500 mb-4">Submit official problem statements for Senate compliance tracking.</p>
                         <div class="mt-auto">
-                            <a href="/project-intake.html" class="inline-flex items-center justify-center w-full rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-slate-900/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-slate-900 text-white h-10 px-4 py-2">
+                            <a href="/project-intake.html" class="inline-flex items-center justify-center w-full rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 bg-slate-900 text-white hover:bg-slate-900/90 h-10 px-4 py-2">
                                 Submit Intake
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- shadcn Card 3 -->
                 <div class="rounded-xl border border-gray-200 bg-white text-slate-950 shadow-sm flex flex-col">
                     <div class="p-6 flex flex-col gap-1.5 flex-grow">
                         <div class="flex items-center justify-between mb-2">
@@ -82,16 +73,21 @@
                         </div>
                         <p class="text-sm text-slate-500 mb-4">Upload final PDF reports and geotagged field assets to cloud storage.</p>
                         <div class="mt-auto">
-                            <a href="/submit-report.html" class="inline-flex items-center justify-center w-full rounded-md text-sm font-medium ring-offset-background transition-colors border border-gray-200 bg-white hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-10 px-4 py-2">
+                            <a href="/submit-report.html" class="inline-flex items-center justify-center w-full rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 border border-gray-200 bg-white hover:bg-slate-100 hover:text-slate-900 h-10 px-4 py-2">
                                 Upload Assets
                             </a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </main>
 
+    <footer class="border-t border-gray-200 bg-white/50 py-6 mt-auto">
+        <div class="container mx-auto max-w-6xl px-4 text-center text-sm text-slate-500">
+            <p>An initiative by Academic Outreach and Community Connect</p>
+            <p class="mt-1">&copy; 2026 by IIT Roorkee</p>
+        </div>
+    </footer>
 </body>
 </html>

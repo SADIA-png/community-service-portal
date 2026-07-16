@@ -3,79 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORE Admin Dashboard</title>
+    <title>Admin Dashboard | CORE Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans min-h-screen p-6">
+<body class="bg-gray-50/50 text-slate-950 min-h-screen flex flex-col antialiased">
 
-    <div class="max-w-7xl mx-auto space-y-8">
-        <!-- Header -->
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex justify-between items-center">
-            <div>
-                <h1 class="text-2xl font-bold text-gray-900">CORE (XXC-399) Command Center</h1>
-                <p class="text-sm text-gray-500">Manage field projects, student teams, and digital assets.</p>
+    <header class="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+        <div class="container mx-auto max-w-6xl flex h-14 items-center justify-between px-4 sm:px-6">
+            <div class="flex items-center gap-2 font-semibold tracking-tight">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                CORE Portal
             </div>
-            <button onclick="fetchDashboardData()" class="bg-indigo-50 text-indigo-700 px-4 py-2 rounded-md font-medium hover:bg-indigo-100 transition">
+            <nav class="flex items-center gap-6 text-sm font-medium text-slate-600">
+                <a href="/" class="transition-colors hover:text-slate-950">Overview</a>
+                <a href="/register-team.html" class="transition-colors hover:text-slate-950">Students</a>
+                <a href="/project-intake.html" class="transition-colors hover:text-slate-950">Proposals</a>
+                <a href="/admin-dashboard.html" class="text-slate-950 transition-colors hover:text-slate-950">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow p-6 md:p-10 w-full max-w-7xl mx-auto space-y-8">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="space-y-1">
+                <h2 class="text-2xl font-semibold tracking-tight">Command Center</h2>
+                <p class="text-sm text-slate-500">Manage field projects, student teams, and digital assets.</p>
+            </div>
+            <button onclick="fetchDashboardData()" class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-gray-200 bg-white hover:bg-slate-100 hover:text-slate-900 h-9 px-4 py-2 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
                 Refresh Data
             </button>
         </div>
 
-        <!-- Loading State -->
-        <div id="loading" class="text-center py-10 text-gray-500 font-medium animate-pulse">
+        <div id="loading" class="text-center py-10 text-sm font-medium text-slate-500 animate-pulse">
             Fetching records from database...
         </div>
 
-        <!-- Projects Section -->
         <div id="projectsSection" class="hidden space-y-4">
-            <h2 class="text-xl font-bold text-gray-800">Senate-Approved Projects</h2>
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-x-auto">
-                <table class="w-full text-left text-sm whitespace-nowrap">
-                    <thead class="bg-gray-50 text-gray-600">
-                        <tr>
-                            <th class="p-4 font-semibold">Project ID</th>
-                            <th class="p-4 font-semibold">Title</th>
-                            <th class="p-4 font-semibold">Submitter</th>
-                            <th class="p-4 font-semibold">Location</th>
-                            <th class="p-4 font-semibold">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="projectsTableBody" class="divide-y divide-gray-100">
-                        <!-- Injected via JS -->
-                    </tbody>
-                </table>
+            <h3 class="text-lg font-semibold tracking-tight">Senate-Approved Projects</h3>
+            <div class="rounded-md border border-gray-200 bg-white overflow-hidden">
+                <div class="w-full overflow-auto">
+                    <table class="w-full caption-bottom text-sm">
+                        <thead class="border-b border-gray-200 bg-slate-50/50">
+                            <tr class="border-b border-gray-200 transition-colors hover:bg-slate-100/50">
+                                <th class="h-12 px-4 text-left align-middle font-medium text-slate-500">Project ID</th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-slate-500">Title</th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-slate-500">Submitter</th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-slate-500">Location</th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-slate-500">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projectsTableBody" class="[&_tr:last-child]:border-0 text-slate-700">
+                            <!-- Injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-        <!-- Teams Section -->
         <div id="teamsSection" class="hidden space-y-4">
-            <h2 class="text-xl font-bold text-gray-800">Registered Student Teams</h2>
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-x-auto">
-                <table class="w-full text-left text-sm whitespace-nowrap">
-                    <thead class="bg-gray-50 text-gray-600">
-                        <tr>
-                            <th class="p-4 font-semibold">Team ID</th>
-                            <th class="p-4 font-semibold">Members (Roll Nos)</th>
-                            <th class="p-4 font-semibold">Assigned Project</th>
-                            <th class="p-4 font-semibold">Status</th>
-                            <th class="p-4 font-semibold">Field Report</th>
-                        </tr>
-                    </thead>
-                    <tbody id="teamsTableBody" class="divide-y divide-gray-100">
-                        <!-- Injected via JS -->
-                    </tbody>
-                </table>
+            <h3 class="text-lg font-semibold tracking-tight">Registered Student Teams</h3>
+            <div class="rounded-md border border-gray-200 bg-white overflow-hidden">
+                <div class="w-full overflow-auto">
+                    <table class="w-full caption-bottom text-sm">
+                        <thead class="border-b border-gray-200 bg-slate-50/50">
+                            <tr class="border-b border-gray-200 transition-colors hover:bg-slate-100/50">
+                                <th class="h-12 px-4 text-left align-middle font-medium text-slate-500">Team ID</th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-slate-500">Members</th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-slate-500">Assigned Project</th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-slate-500">Status</th>
+                                <th class="h-12 px-4 text-left align-middle font-medium text-slate-500">Asset</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teamsTableBody" class="[&_tr:last-child]:border-0 text-slate-700">
+                            <!-- Injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
+
+    <footer class="border-t border-gray-200 bg-white/50 py-6 mt-auto">
+        <div class="container mx-auto max-w-6xl px-4 text-center text-sm text-slate-500">
+            <p>An initiative by Academic Outreach and Community Connect</p>
+            <p class="mt-1">&copy; 2026 by IIT Roorkee</p>
+        </div>
+    </footer>
 
     <script>
         async function fetchDashboardData() {
             const loading = document.getElementById('loading');
             const projectsSection = document.getElementById('projectsSection');
             const teamsSection = document.getElementById('teamsSection');
-            const projectsBody = document.getElementById('projectsTableBody');
-            const teamsBody = document.getElementById('teamsTableBody');
-
+            
             loading.classList.remove('hidden');
             projectsSection.classList.add('hidden');
             teamsSection.classList.add('hidden');
@@ -84,44 +109,42 @@
                 const response = await fetch('/api/admin-dashboard');
                 const data = await response.json();
 
-                // Render Projects
-                projectsBody.innerHTML = data.projects.map(p => `
-                    <tr class="hover:bg-gray-50">
-                        <td class="p-4 font-mono font-medium text-indigo-600">${p._id}</td>
-                        <td class="p-4 truncate max-w-xs" title="${p.details?.title || p.title || ''}">${p.details?.title || p.title || 'N/A'}</td>
-                        <td class="p-4">${p.submitter?.name || p.organization || 'N/A'}</td>
-                        <td class="p-4">${p.logistics?.target_location || 'N/A'}</td>
-                        <td class="p-4"><span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold uppercase tracking-wider">${p.status || p.assignment_status || 'Open'}</span></td>
+                document.getElementById('projectsTableBody').innerHTML = data.projects.map(p => `
+                    <tr class="border-b border-gray-200 transition-colors hover:bg-slate-100/50 data-[state=selected]:bg-slate-100">
+                        <td class="p-4 align-middle font-medium text-slate-900">${p._id}</td>
+                        <td class="p-4 align-middle max-w-[250px] truncate" title="${p.details?.title || p.title || ''}">${p.details?.title || p.title || 'N/A'}</td>
+                        <td class="p-4 align-middle">${p.submitter?.name || p.organization || 'N/A'}</td>
+                        <td class="p-4 align-middle">${p.logistics?.target_location || 'N/A'}</td>
+                        <td class="p-4 align-middle">
+                            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-slate-900 text-slate-50 hover:bg-slate-900/80">
+                                ${p.status || p.assignment_status || 'Open'}
+                            </span>
+                        </td>
                     </tr>
                 `).join('');
 
-                // Render Teams
-                teamsBody.innerHTML = data.teams.map(t => {
+                document.getElementById('teamsTableBody').innerHTML = data.teams.map(t => {
                     const reportButton = t.report_url 
-                        ? `<a href="${t.report_url}" target="_blank" class="text-blue-600 hover:text-blue-800 font-medium underline">View Asset</a>`
-                        : `<span class="text-gray-400 italic">Pending</span>`;
-                        
+                        ? `<a href="${t.report_url}" target="_blank" class="font-medium text-slate-900 underline underline-offset-4 hover:text-slate-700">Download</a>`
+                        : `<span class="text-slate-400">Pending</span>`;
                     return `
-                    <tr class="hover:bg-gray-50">
-                        <td class="p-4 font-mono font-medium text-indigo-600">${t._id}</td>
-                        <td class="p-4">${t.members ? t.members.join(', ') : 'N/A'}</td>
-                        <td class="p-4 text-gray-500">${t.project_preference_1 || 'Unassigned'}</td>
-                        <td class="p-4">${t.status || 'Registered'}</td>
-                        <td class="p-4">${reportButton}</td>
+                    <tr class="border-b border-gray-200 transition-colors hover:bg-slate-100/50 data-[state=selected]:bg-slate-100">
+                        <td class="p-4 align-middle font-medium text-slate-900">${t._id}</td>
+                        <td class="p-4 align-middle">${t.members ? t.members.join(', ') : 'N/A'}</td>
+                        <td class="p-4 align-middle text-slate-500">${t.project_preference_1 || 'Unassigned'}</td>
+                        <td class="p-4 align-middle">${t.status || 'Registered'}</td>
+                        <td class="p-4 align-middle">${reportButton}</td>
                     </tr>
                 `}).join('');
 
                 loading.classList.add('hidden');
                 projectsSection.classList.remove('hidden');
                 teamsSection.classList.remove('hidden');
-
             } catch (error) {
-                loading.innerText = "Error loading data. Check console.";
-                loading.classList.replace('text-gray-500', 'text-red-500');
+                loading.innerText = "Error loading data.";
+                loading.classList.replace('text-slate-500', 'text-red-500');
             }
         }
-
-        // Load data automatically when the page opens
         window.onload = fetchDashboardData;
     </script>
 </body>

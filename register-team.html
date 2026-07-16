@@ -3,92 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Registration | Community Service Portal</title>
-    <!-- Tailwind CSS CDN for styling without friction -->
+    <title>Register Team | CORE Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body class="bg-gray-50 font-sans min-h-screen flex items-center justify-center p-6">
+<body class="bg-gray-50/50 text-slate-950 min-h-screen flex flex-col antialiased">
 
-    <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-2xl">
-        <h1 class="text-2xl font-bold text-gray-850 mb-2">Team Registration</h1>
-        <p class="text-sm text-gray-600 mb-6">Form your interdisciplinary group of 4-5 graduate students. One student must register as the Team Lead.</p>
-
-        <form id="registrationForm" class="space-y-6">
-            <!-- Program / Department Select -->
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1">Academic Program/Department</label>
-                <input type="text" id="program" required placeholder="e.g., MBA / MCA Interdisciplinary" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <!-- Universal Navbar -->
+    <header class="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+        <div class="container mx-auto max-w-6xl flex h-14 items-center justify-between px-4 sm:px-6">
+            <div class="flex items-center gap-2 font-semibold tracking-tight">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                CORE Portal
             </div>
+            <nav class="flex items-center gap-6 text-sm font-medium text-slate-600">
+                <a href="/" class="transition-colors hover:text-slate-950">Overview</a>
+                <a href="/register-team.html" class="text-slate-950 transition-colors hover:text-slate-950">Students</a>
+                <a href="/project-intake.html" class="transition-colors hover:text-slate-950">Proposals</a>
+                <a href="/admin-dashboard.html" class="transition-colors hover:text-slate-950">Admin</a>
+            </nav>
+        </div>
+    </header>
 
-            <hr class="border-gray-200">
-
-            <!-- Team Members Inputs -->
-            <div>
-                <h3 class="text-sm font-semibold text-gray-700 mb-3">Team Members (Enter Roll Numbers/IDs)</h3>
-                <div class="space-y-3">
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Team Lead ID</label>
-                        <input type="text" id="leadId" required placeholder="e.g., STU001" class="w-full px-4 py-2 border border-blue-300 bg-blue-50 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Member 2 ID</label>
-                        <input type="text" id="member2" required placeholder="e.g., STU002" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Member 3 ID</label>
-                        <input type="text" id="member3" required placeholder="e.g., STU003" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Member 4 ID</label>
-                        <input type="text" id="member4" required placeholder="e.g., STU004" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Member 5 ID (Optional)</label>
-                        <input type="text" id="member5" placeholder="e.g., STU005" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center p-6 md:p-10">
+        <div class="rounded-xl border border-gray-200 bg-white text-slate-950 shadow-sm w-full max-w-2xl">
+            <div class="p-6">
+                <div class="space-y-1 mb-6">
+                    <h2 class="text-2xl font-semibold tracking-tight">Team Registration</h2>
+                    <p class="text-sm text-slate-500">Register your 4-member team and select your project preferences.</p>
                 </div>
+
+                <form id="teamForm" class="space-y-6">
+                    <!-- Roll Numbers -->
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-semibold text-slate-900 border-b pb-2">Student Roll Numbers</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" id="member1" required placeholder="Member 1 (Your Roll No)" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                            <input type="text" id="member2" required placeholder="Member 2 Roll No" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                            <input type="text" id="member3" required placeholder="Member 3 Roll No" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                            <input type="text" id="member4" required placeholder="Member 4 Roll No" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                        </div>
+                    </div>
+
+                    <!-- Project Preferences -->
+                    <div class="space-y-3">
+                        <h3 class="text-sm font-semibold text-slate-900 border-b pb-2">Project Preferences</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-950 mb-1">Preference 1 *</label>
+                                <input type="text" id="pref1" required placeholder="e.g., CORE-1024" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-950 mb-1">Preference 2 *</label>
+                                <input type="text" id="pref2" required placeholder="e.g., CORE-3045" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-950 mb-1">Preference 3 *</label>
+                                <input type="text" id="pref3" required placeholder="e.g., CORE-8891" class="flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-slate-900 text-slate-50 hover:bg-slate-900/90 h-10 px-4 py-2 w-full transition-colors focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2">
+                        Finalize Registration
+                    </button>
+                </form>
+
+                <div id="statusMessage" class="mt-4 p-3 rounded-md text-center text-sm font-medium hidden"></div>
             </div>
+        </div>
+    </main>
 
-            <hr class="border-gray-200">
-
-            <!-- Project Preferences Selection -->
-            <div>
-                <h3 class="text-sm font-semibold text-gray-700 mb-2">Project Preferences</h3>
-                <p class="text-xs text-gray-500 mb-4">Enter the Project IDs from the approved pool in order of priority.</p>
-                <div class="grid grid-cols-3 gap-4">
-                    <input type="text" id="pref1" required placeholder="1st Choice (ID)" class="w-full px-3 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
-                    <input type="text" id="pref2" required placeholder="2nd Choice (ID)" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <input type="text" id="pref3" required placeholder="3rd Choice (ID)" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
-            </div>
-
-            <button type="submit" class="w-full bg-blue-600 text-white font-medium py-2 rounded-md hover:bg-blue-750 transition duration-200 shadow-sm">Submit Team Registration</button>
-        </form>
-
-        <!-- Status Message Div -->
-        <div id="statusMessage" class="mt-4 p-3 rounded-md text-center hidden"></div>
-    </div>
+    <!-- Universal Footer -->
+    <footer class="border-t border-gray-200 bg-white/50 py-6 mt-auto">
+        <div class="container mx-auto max-w-6xl px-4 text-center text-sm text-slate-500">
+            <p>An initiative by Academic Outreach and Community Connect</p>
+            <p class="mt-1">&copy; 2026 by IIT Roorkee</p>
+        </div>
+    </footer>
 
     <script>
-        document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+        document.getElementById('teamForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const status = document.getElementById('statusMessage');
-            status.className = "mt-4 p-3 rounded-md text-center block bg-blue-100 text-blue-700";
-            status.innerText = "Processing registration...";
-
-            // Gather structural payload from inputs
-            const members = [
-                document.getElementById('leadId').value.trim(),
-                document.getElementById('member2').value.trim(),
-                document.getElementById('member3').value.trim(),
-                document.getElementById('member4').value.trim()
-            ];
-            const m5 = document.getElementById('member5').value.trim();
-            if(m5) members.push(m5);
+            status.className = "mt-4 p-3 rounded-md text-center text-sm font-medium block bg-slate-100 text-slate-700 animate-pulse";
+            status.innerText = "Verifying student records...";
 
             const payload = {
-                program: document.getElementById('program').value.trim(),
-                members: members,
+                members: [
+                    document.getElementById('member1').value.trim(),
+                    document.getElementById('member2').value.trim(),
+                    document.getElementById('member3').value.trim(),
+                    document.getElementById('member4').value.trim()
+                ],
                 preferences: [
                     document.getElementById('pref1').value.trim(),
                     document.getElementById('pref2').value.trim(),
@@ -97,25 +108,23 @@
             };
 
             try {
-                // Post payload straight to our upcoming serverless API
                 const response = await fetch('/api/register-team', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-                
                 const data = await response.json();
                 
                 if(response.ok) {
-                    status.className = "mt-4 p-3 rounded-md text-center block bg-green-100 text-green-700";
-                    status.innerText = "Success! Team registered successfully.";
-                    document.getElementById('registrationForm').reset();
+                    status.className = "mt-4 p-3 rounded-md text-center text-sm font-medium block border border-green-200 bg-green-50 text-green-900";
+                    status.innerHTML = `Success! Team registered. Your ID is: <strong>${data.teamId}</strong>`;
+                    document.getElementById('teamForm').reset();
                 } else {
-                    status.className = "mt-4 p-3 rounded-md text-center block bg-red-100 text-red-700";
+                    status.className = "mt-4 p-3 rounded-md text-center text-sm font-medium block border border-red-200 bg-red-50 text-red-900";
                     status.innerText = "Error: " + data.message;
                 }
             } catch (err) {
-                status.className = "mt-4 p-3 rounded-md text-center block bg-red-100 text-red-700";
+                status.className = "mt-4 p-3 rounded-md text-center text-sm font-medium block border border-red-200 bg-red-50 text-red-900";
                 status.innerText = "Connection failed. Please try again later.";
             }
         });
